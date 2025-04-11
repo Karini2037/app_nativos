@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:great_places/widgets/image_input.dart';
 
@@ -12,24 +10,8 @@ class PlaceFormScreen extends StatefulWidget {
 
 class _PlaceFormScreenState extends State<PlaceFormScreen> {
   final _titleController = TextEditingController();
-  final List<File> _images = [];
 
-  void _addImage(File pickedImage) {
-    setState(() {
-      _images.add(pickedImage);
-    });
-  }
-
-  void _submitForm() {
-    if (_titleController.text.isEmpty || _images.isEmpty) return;
-    //salva os dados
-  }
-
-  void _openCamera() {
-    //Mostra novamente o ImageInput ao clicar em "Avançar"
-    showBottomSheet(context: context,
-     builder: (_) => ImageInput(onSelectImage: _addImage),)
-  }
+  void _submitForm() {}
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +33,6 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                       decoration: const InputDecoration(
                         labelText: 'Título',
                       ),
-                      const SizedBox(height: 10),
-                      ElevatedButton.icon()
                     ),
                     const SizedBox(height: 10),
                     const ImageInput(),
@@ -65,7 +45,8 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
             icon: const Icon(Icons.add),
             label: const Text('Adicionar'),
             style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.black, backgroundColor: Theme.of(context).colorScheme.secondary,
+              //primary: Theme.of(context).colorScheme.secondary,
+             // onPrimary: Colors.black,
               elevation: 0,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),

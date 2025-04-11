@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageInput extends StatefulWidget {
-
-  final void Function(File) onSelectImage;
-  const ImageInput({Key? key, required this.onSelectImage}) : super(key: key);
+  const ImageInput({Key? key}) : super(key: key);
 
   @override
   State<ImageInput> createState() => _ImageInputState();
@@ -22,14 +20,9 @@ class _ImageInputState extends State<ImageInput> {
       maxWidth: 600,
     ) as XFile;
 
-    if (imageFile == null) return;
-
     setState(() {
       _storedImage = File(imageFile.path);
     });
-
-    // Envia a imagem para o pai  que é o PlaceFormScreen
-    widget.onSelectImage(_storedImage!);
   }
 
   @override
